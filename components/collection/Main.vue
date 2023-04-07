@@ -2,19 +2,19 @@
 <template>
 <div>
     <div>
-<CollectionList1 :units="units"></CollectionList1>
+<CollectionList1 :units="units" @editUnits="editUnits"></CollectionList1>
     </div>
     <div>
  <CollectionAdd1 @add_units="addUnits"></CollectionAdd1>
- <CollectionEdit1 @editUnits="editUnits" :units="units"></CollectionEdit1>
+ <CollectionEdit1 v-if="show" @editUnits="editUnits" :units="unitObj"></CollectionEdit1>
  </div>
  <div>
  </div>
  </div>
 </template>
 <script lang="ts" setup>
-
-
+const show = ref(false)
+const unitObj = ref({})
 const getOptions = {
   method: "GET",
   headers: {
@@ -22,7 +22,7 @@ const getOptions = {
     Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoiNmZlZDJiYTgwYThkNGM0MjlhZGZiOGQ1ZTZmZTY0ODAiLCJkIjoiMTY4MDA4NCIsInIiOiJzYSIsInAiOiJmcmVlIiwiYSI6ImZpbmRlci5pbyIsImwiOiJ1czEiLCJleHAiOjE2ODMyNzk3Mjl9.5cJkrudAvTWoVRigTNcfQ321W_lOyMm-xsb9rMxuVBE`,
   },
 };
-var units =  useAuthLazyFetch(
+var units = await useAuthLazyFetch(
      " https://v1-orm-gharpe.mercury.infinity-api.net/api/units/?offset=0&limit=100&sort_column=id&sort_direction=desc",
   getOptions
 );
@@ -53,17 +53,11 @@ const postOptions = {
   );
 }
 
-function editUnits(data: object)  {
-    console.log("data------->",data)
-const postOptions = {   
-    body: JSON.stringify(data)
-  }
+ const editUnits = (data: object) => {
+   show.value = true
+   unitObj.value = data;
+   
 
-    useAuthLazyFetchPut(
-    `https://v1-orm-gharpe.mercury.infinity-api.net/api/units/${uid}`,
-    postOptions
-  );
 }
-
 
 </script>

@@ -6,7 +6,7 @@
         type="button"
         class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
       >
-        Add user
+        Add Unit
       </button>
     </div>
     <TransitionRoot as="template" :show="open">
@@ -38,7 +38,7 @@
                           <div class="space-y-1">
                             <DialogTitle
                               class="text-base font-semibold leading-6 text-gray-900"
-                              >New project</DialogTitle
+                              >New Unit</DialogTitle
                             >
                             <p class="text-sm text-gray-500">
                               Get started by filling in the information below to

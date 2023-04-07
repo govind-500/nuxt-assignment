@@ -4,9 +4,8 @@
 
 // Custom Auth Fetch Composable
 export const useAuthLazyFetch = (request: any, options: any | undefined | null) => {
-    console.log("data in ts file----->",options)
     // Get Token from store or local storage
-    // let token = useUserStore().token
+    let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoiNmZlZDJiYTgwYThkNGM0MjlhZGZiOGQ1ZTZmZTY0ODAiLCJkIjoiMTY4MDA4NCIsInIiOiJzYSIsInAiOiJmcmVlIiwiYSI6ImZpbmRlci5pbyIsImwiOiJ1czEiLCJleHAiOjE2ODMyNzk3Mjl9.5cJkrudAvTWoVRigTNcfQ321W_lOyMm-xsb9rMxuVBE"
     // if (!token) token = useCookie('token').value || ''
 
     // Use the useFetch hook to make a request with some additional options
@@ -15,7 +14,7 @@ export const useAuthLazyFetch = (request: any, options: any | undefined | null) 
         onRequest({ request, options }) {
             // Set the request headers
             options.headers = {
-                Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoiNmZlZDJiYTgwYThkNGM0MjlhZGZiOGQ1ZTZmZTY0ODAiLCJkIjoiMTY4MDA4NCIsInIiOiJzYSIsInAiOiJmcmVlIiwiYSI6ImZpbmRlci5pbyIsImwiOiJ1czEiLCJleHAiOjE2ODMyNzk3Mjl9.5cJkrudAvTWoVRigTNcfQ321W_lOyMm-xsb9rMxuVBE`,
+                Authorization: `Bearer ${token}`,
             }
         },
 

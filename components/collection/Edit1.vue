@@ -30,7 +30,7 @@
                           <div class="space-y-1">
                             <DialogTitle
                               class="text-base font-semibold leading-6 text-gray-900"
-                              >New project</DialogTitle
+                              >New Units</DialogTitle
                             >
                             <p class="text-sm text-gray-500">
                               Get started by filling in the information below to
@@ -196,25 +196,27 @@ import {
   TransitionChild,
   TransitionRoot,
 } from "@headlessui/vue";
+import { XMarkIcon } from "@heroicons/vue/24/outline";
+
 
 const props =defineProps({
     units:{
-        type:Array,
-        default:()=>[]
+        type:Object,
+        default:()=>{}
     },
-     
+   
 })
 console.log("units11111",props.units)
 
-const emit =defineEmits(['editUnits'])
-const open = ref(false);
+const emit = defineEmits(['editUnits'])
+const open = ref(true);
 
-const propertyName = ref("");
-const propertyMetric = ref("");
-const propertyAge = ref("");
-const propertyLeadId = ref("");
-const propertyFloorId = ref("");
-const propertyId = ref("");
+const propertyName = ref(props.units.name);
+const propertyMetric = ref(props.units.metric);
+const propertyAge = ref(props.units.age_of_property);
+const propertyLeadId = ref(props.units.lead_id);
+const propertyFloorId = ref(props.units.floor_plan_id);
+const propertyId = ref(props.units.property_id);
 
 
 function editUnits(){
@@ -252,6 +254,6 @@ function editUnits(){
   floor_plan_id: propertyFloorId.value,
   property_id:propertyId.value,
    
-  });
+  })
 }
 </script>
