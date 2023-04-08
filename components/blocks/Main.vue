@@ -75,6 +75,7 @@ const updateBlocks = async (data: Object) => {
     `https://v1-orm-lib.mars.hipso.cc/api/blocks/${data.uid}`,
     putOptions
   );
+  getCall(data.uid)
 };
 
 // delete the blocks
@@ -87,5 +88,11 @@ const deleteBlocks = (data: object) => {
     `https://v1-orm-lib.mars.hipso.cc/api/blocks/${data.uid}`,
     deleteOptions
   );
+  getCall(data.uid)
 };
+
+// get call through UID
+ async function  getCall (data:any){
+ await useAuthLazyFetch(`https://v1-orm-lib.mars.hipso.cc/api/blocks/${data}`,{})
+}
 </script>

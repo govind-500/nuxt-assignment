@@ -83,7 +83,6 @@
                           >
                             Cancel
                           </button>
-                          {{ blockObj.uid }}
                           <button
                             @click="editBlocks(blockObj.uid)"
                             type="submit"
@@ -141,5 +140,6 @@ const editBlocks = () => {
     uid: uid.value,
   };
   emit("updateBlocks", formData);
+  open.value=false
 };
 </script>
