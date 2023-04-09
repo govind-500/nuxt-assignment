@@ -13,7 +13,7 @@
         :is_open="is_open"
       ></FloorplansAdd>
     </div>
-    <div v-if="is_open_edit" :key="editRender">
+    <div v-if="isOpen" :key="editRender">
       <FloorplansEdit
         :floorData="getFloor"
         @editFloors="editFloors"
@@ -31,7 +31,7 @@ const is_open1 = ref(false);
 const render = ref(0);
 const editRender = ref(0);
 const getFloor = ref({});
-const is_open_edit = ref(false);
+const isOpen = ref(false);
 // for getting data from get call
 const getData = async () => {
   const { data: floorData } = await useAuthLazyFetch(
@@ -67,10 +67,11 @@ const addSlidebar = () => {
 const editSlidebar = (data: any) => {
   getFloor.value = data;
   editRender.value++;
-  is_open_edit.value = true;
+  isOpen.value = true;
 };
+
+// edit the floors
 const editFloors = async (data: any) => {
-  console.log("EditDataa", data);
   const putOptions = {
     body: JSON.stringify(data),
   };
@@ -80,8 +81,9 @@ const editFloors = async (data: any) => {
   );
   getData();
 };
+
+// delete the floors
 const deleteFloors= async(data:any)=>{
-  console.log("deleteeeeeee",data);
   const deleteOptions = {
     body: JSON.stringify(data),
   };

@@ -51,7 +51,7 @@
                           >
                           <div class="mt-2">
                             <input
-                              v-model="form.name"
+                              v-model="floorData.name"
                               type="text"
                               class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                               placeholder="Enter your FCM"
@@ -66,7 +66,7 @@
                           >
                           <div class="mt-2">
                             <input
-                              v-model="form.build_up_area"
+                              v-model="floorData.build_up_area"
                               type="text"
                               name="text"
                               id="text"
@@ -83,7 +83,7 @@
                           >
                           <div class="mt-2">
                             <input
-                              v-model="form.carpet_area"
+                              v-model="floorData.carpet_area"
                               type="text"
                               name="text"
                               id="text"
@@ -100,7 +100,7 @@
                           >
                           <div class="mt-2">
                             <input
-                              v-model="form.metric_name"
+                              v-model="floorData.metric_name"
                               type="text"
                               name="text"
                               id="text"
@@ -117,7 +117,7 @@
                           >
                           <div class="mt-2">
                             <input
-                              v-model="form.facing"
+                              v-model="floorData.facing"
                               type="text"
                               name="text"
                               id="text"
@@ -133,7 +133,7 @@
                             >
                             <div class="mt-2">
                               <input
-                                v-model="form.project_id"
+                                v-model="floorData.project_id"
                                 type="text"
                                 name="text"
                                 id="text"
@@ -194,18 +194,8 @@ const props = defineProps({
   },
 
 });
-console.log("floorDAtaa", props.floorData);
 const emit = defineEmits(["editFloors"]);
 
-// Declaring the variables
-const form = ref({
-  name: props.floorData.name,
-  build_up_area: 0,
-  carpet_area: 0,
-  metric_name: props.floorData.metric_name,
-  facing: "East",
-  project_id: props.floorData.project_id,
-});
 
 // passing the data from emit for adding the blocks
 const editFloors = () => {

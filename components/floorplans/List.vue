@@ -140,10 +140,12 @@ const props = defineProps({
 const open = ref(true);
 const emit = defineEmits([ "slidebar","editSlidebar","deleteFloors"]);
 
+// add open slide bar
 const addFloors = () => {
   emit("slidebar");
 };
 
+// prefill the save data
 const prefillData = (data:any, index: number)=>{
   emit("editSlidebar",data, index)
 }
