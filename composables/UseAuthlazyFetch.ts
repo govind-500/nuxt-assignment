@@ -4,7 +4,6 @@
 
 // Custom Auth Fetch Composable
 export const useAuthLazyFetch = (request: any, options: any | undefined | null) => {
-    console.log("data in ts file----->",options)
     // Get Token from store or local storage
     // let token = useUserStore().token
     // if (!token) token = useCookie('token').value || ''
