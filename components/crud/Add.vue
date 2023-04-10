@@ -103,6 +103,7 @@ const open = ref(true);
 const emit = defineEmits(["saveStorage"])
 const form = ({name:"",age:"",date_of_birth:"",gender:""})
 
+// save user details
 const saveLocalStorage=()=>{
 emit("saveStorage",form)
 }

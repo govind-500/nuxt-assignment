@@ -108,7 +108,7 @@ const props = defineProps({
         default:()=>{}
     }
 })
-console.log("edittUSers=======",props.users)
+// sending the edit details through emit
 const editSaveStoarge=()=>{
 emit("editSaveStorage",props.users)
 }
