@@ -19,9 +19,13 @@
     "@heroicons/vue": "^2.0.17",
     "@pinia/nuxt": "^0.4.7",
     "@tailwindcss/forms": "^0.5.3",
+    "@vue-leaflet/vue-leaflet": "^0.9.0",
     "@vueuse/core": "^9.13.0",
     "@vueuse/nuxt": "^9.13.0",
+    "leaflet": "^1.9.3",
     "mitt": "^3.0.0",
-    "nuxt-icon": "^0.3.3"
+    "nuxt-icon": "^0.3.3",
+    "nuxt-leaflet": "^0.0.27",
+    "vue3-leaflet": "^1.0.43"
   }
 }
