@@ -12,7 +12,7 @@
     <div v-if="is_open" :key="addRender">
       <CrudAdd @saveStorage="saveStorage"></CrudAdd>
     </div>
-    <div v-if="isOpen">
+    <div v-if="isOpen" :key="editRender">
       <CrudEdit @editSaveStorage="editSaveStorage" :users="user"></CrudEdit>
     </div>
   </div>
@@ -27,6 +27,7 @@ const addRender = ref(0);
 const editRender = ref(0);
 const users = ref([]);
 const user = ref({});
+const editIndex=ref(0)
 
 onMounted(() => {
   const userList = localStorage.getItem("usersList");
@@ -55,13 +56,22 @@ const saveStorage = (data: object) => {
 };
 // edit add user details
 const editSaveStorage = (data: any) => {
+users.value.find((item,index)=>{
+if(editIndex.value==index){
+item.name= data.name
+item.age=data.age
+item.date_of_birth=data.date_of_birth
+}
+})
+  isOpen.value = false;
   users.value = JSON.parse(data);
   localStorage.setItem("usersList", JSON.stringify(users.value));
+
 };
 
 // delete  user details
 const deleteUser = (index: number) => {
-  users.value.splice(index, 1);
+  users.value.splice(index,1);
   localStorage.setItem("usersList", JSON.stringify(users.value));
 };
 </script>
