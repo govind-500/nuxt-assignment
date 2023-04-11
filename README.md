@@ -41,3 +41,7 @@ npm run preview
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
 # nuxt-assignment
+
+# Leaflet component
+
+Verified and installed @vue-leaflet/vue-leaflet npm and given data through props
