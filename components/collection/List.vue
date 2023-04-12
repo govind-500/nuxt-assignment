@@ -17,12 +17,8 @@
           Add Template
         </button>
       </div>
-      <!-- Show list of created templates 
+      <!-- Show list of created templates -->
         
-         v-if="
-            emailTemplate.data._rawValue && emailTemplate.data._rawValue.length > 1
-          "
-         -->
       <div
         v-for="template in emailTemplate.data._rawValue"
         :key="template.name"
@@ -79,7 +75,6 @@
         </span>
       </div>
     </div>
-
 
     <!-- Input field for Template Subject -->
     <div class="row-span-3 col-span-4 bg-white h-[calc(100vh-150px)]">
@@ -157,7 +152,6 @@ const props = defineProps({
   },
 });
 
-
 const render = ref(0);
 // Declaring variables
 let id = ref("");
@@ -165,20 +159,16 @@ let name = ref("");
 let body = ref("");
 let subject = ref("");
 
-
 // Prefill data when an existing template is selected
-//const edit = (item: any) => { useBusEmit('edit-template', item), console.log("-------->emit", item)}
 const edit = (data: any) => {
   console.log("data", data);
   show.value = false;
-  //$bus.$emit('edit-template', data)
   id.value = data.uid;
   name.value = data.name;
   body.value = data.body;
   subject.value = data.subject;
   render.value++;
 };
-
 
 const getOptions = {
   method: "GET",
@@ -191,7 +181,6 @@ var emailTemplate = await useAuthLazyFetch(
   "https://v1-orm-lib.mars.hipso.cc/email-templates/?offset=0&limit=100&sort_column=id&sort_direction=desc",
   getOptions
 );
-
 
 // Add Template to the template data
 const addTemplate = (data: any) => {
@@ -213,7 +202,6 @@ const addTemplate = (data: any) => {
     },
   };
 
-
   const addTemplateData = useAuthLazyFetchPost(
     "https://v1-orm-lib.mars.hipso.cc/email-templates/",
     postOptions
@@ -228,7 +216,6 @@ const addTemplate = (data: any) => {
   subject.value = "";
 };
 
-
 const deleteTemplate = (data: any) => {
   const deleteOptions = {
     method: "DELETE",
@@ -242,4 +229,9 @@ const deleteTemplate = (data: any) => {
     deleteOptions
   );
 };
+
+// search results
+const searchResults=()=>{
+  
+}
 </script>

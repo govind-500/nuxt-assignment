@@ -1,6 +1,7 @@
 <template>
   <div>
     <!-- <NuxtWelcome /> -->
-    <CollectionMain></CollectionMain>
+    <!-- <CollectionMain></CollectionMain> -->
+    <Crud-collectionMain></Crud-collectionMain>
   </div>
 </template>
