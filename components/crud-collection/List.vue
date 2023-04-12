@@ -11,7 +11,7 @@
           <div class="mt-2">
             <input
             v-model="search"
-            @input="searchUser(users,search)"
+            @input="searchUsers(search)"
               type="search"
               name="search"
               id="search"
@@ -54,18 +54,14 @@
                   <h3 class="truncate font-medium text-gray-900">
                     {{ user.name }}
                   </h3>
-              
-                <div class="mt-[3.75rem]">
-                  <label>Age :</label>
                   <span
                     class="inline-block flex-shrink-0 rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800"
-                    >{{ user.age }}</span
+                    >Age: {{ user.age }}</span
                   >
-                </div>
               </div>
-              <div>
+              <div class="flex">
                   <label>Date of birth :</label>
-                <p class="mt-1 truncate text-sm text-gray-500">
+                <p class="mx-4 mt-1 truncate text-sm text-gray-500">
                   {{ user.date_of_birth }}
                 </p>
               </div>
@@ -188,7 +184,7 @@ const props = defineProps({
     default: () => [],
   },
 });
-const emit = defineEmits(["addUser", "editUser", "deleteUser"]);
+const emit = defineEmits(["addUser", "editUser", "deleteUser","search-results"]);
 
 // add user details
 const addUser = () => {
@@ -207,9 +203,11 @@ const  deleteUser = (index:number)=>{
     open.value = false
     }
 // Search results 
-const searchUser=(users:any,query:any)=>{
-    props.users.find((user)=>{
-        console.log("user",user)
+const searchUsers = (search:String)=>{
+  console.log("searchhhh",search)
+  const searchResults =  props.users.filter((user)=>{
+      user.name.toLowerCase().includes(search.toLowerCase)
     })
+    emit("search-results",searchResults)
 }
 </script>

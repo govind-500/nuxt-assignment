@@ -2,32 +2,34 @@
 <template>
   <div>
     <div>
-      <CrudList
+      <Crud-collectionList
+        @search-results="searchUsers"
         :users="users"
         @addUser="addUser"
         @editUser="editUser"
         @deleteUser="deleteUser"
-      ></CrudList>
+      ></Crud-collectionList>
     </div>
     <div v-if="is_open" :key="addRender">
-      <CrudAdd @saveStorage="saveStorage"></CrudAdd>
+      <Crud-collectionAdd @saveStorage="saveStorage"></Crud-collectionAdd>
     </div>
     <div v-if="isOpen" :key="editRender">
-      <CrudEdit @editSaveStorage="editSaveStorage" :users="user"></CrudEdit>
+      <Crud-collectionEdit
+        @editSaveStorage="editSaveStorage"
+        :users="user"
+      ></Crud-collectionEdit>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
-import { ref, onMounted } from "vue";
 
-// Declaring the varibles
 const is_open = ref(false);
 const isOpen = ref(false);
 const addRender = ref(0);
 const editRender = ref(0);
 const users = ref([]);
 const user = ref({});
-const editIndex=ref(0)
+const editIndex = ref(0);
 
 onMounted(() => {
   const userList = localStorage.getItem("usersList");
@@ -56,22 +58,27 @@ const saveStorage = (data: object) => {
 };
 // edit add user details
 const editSaveStorage = (data: any) => {
-users.value.find((item,index)=>{
-if(editIndex.value==index){
-item.name= data.name
-item.age=data.age
-item.date_of_birth=data.date_of_birth
-}
-})
+  users.value.find((item, index) => {
+    if (editIndex.value == index) {
+      item.name = data.name;
+      item.age = data.age;
+      item.date_of_birth = data.date_of_birth;
+    }
+  });
   isOpen.value = false;
   users.value = JSON.parse(data);
   localStorage.setItem("usersList", JSON.stringify(users.value));
-
 };
 
 // delete  user details
 const deleteUser = (index: number) => {
-  users.value.splice(index,1);
+  users.value.splice(index, 1);
   localStorage.setItem("usersList", JSON.stringify(users.value));
+};
+
+// search results
+const searchUsers = (data:string) => {
+  console.log("dataaa", data);
+ users.value = data
 };
 </script>
